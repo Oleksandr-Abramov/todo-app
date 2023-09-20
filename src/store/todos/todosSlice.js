@@ -22,3 +22,4 @@ export const todosSlice = createSlice({
 });
 
 export const { addTodo, setCurrentTodo, removeTodo } = todosSlice.actions;
+export const todosReduser = todosSlice.reducer;

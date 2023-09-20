@@ -1,10 +1,37 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { todosSlice } from "store/todos/todosSlice";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { todosReduser } from "store/todos/todosSlice";
+import storage from "redux-persist/lib/storage";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 
-export const store = configureStore({
-  reducer: todosSlice,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }),
+const middleware = [
+  ...getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),
+];
+
+const todosPersistConfig = {
+  key: "todos",
+  storage,
+  whitelist: ["items", "activeItem"],
+};
+
+const persistedTodosReducer = persistReducer(todosPersistConfig, todosReduser);
+
+const store = configureStore({
+  reducer: { todos: persistedTodosReducer },
+  middleware,
 });
+
+let persistor = persistStore(store);
+export { store, persistor };
