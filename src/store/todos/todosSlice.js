@@ -18,8 +18,15 @@ export const todosSlice = createSlice({
     removeItem(state, { payload }) {
       state.items = state.items.filter(({ id }) => id !== payload);
     },
+    addComment(state, { payload }) {
+      const selectedItem = state.items.find(
+        ({ id }) => id === state.activeItem.id
+      );
+      selectedItem.comments.push(payload);
+    },
   },
 });
 
-export const { addItem, setActiveItem, removeItem } = todosSlice.actions;
+export const { addItem, setActiveItem, removeItem, addComment } =
+  todosSlice.actions;
 export const todosReduser = todosSlice.reducer;

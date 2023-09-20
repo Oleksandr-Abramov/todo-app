@@ -1,9 +1,9 @@
-import Items from "components/Items";
+import Main from "components/Main";
 
 function App() {
   return (
     <div className="App">
-      <Items />
+      <Main />
     </div>
   );
 }
