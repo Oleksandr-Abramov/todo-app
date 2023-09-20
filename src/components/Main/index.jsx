@@ -5,8 +5,15 @@ import Comments from "components/Comments";
 const Main = () => {
   return (
     <div className={s.container}>
-      <Items />
-      <Comments />
+      <aside className={s.sideBar}>
+        <h1>DAYRY APP</h1>
+        <p>Comment whit no sense</p>
+      </aside>
+
+      <main className={s.main}>
+        <Items />
+        <Comments />
+      </main>
     </div>
   );
 };

@@ -5,7 +5,7 @@ const CommentsList = ({ comments }) => {
     <ul className={s.container}>
       {comments.map(({ id, body, color }) => (
         <li key={id} className={s.item}>
-          <div style={{ backgroundColor: color }} className={s.icon}></div>
+          <span style={{ backgroundColor: color }} className={s.icon}></span>
           <p>{body}</p>
         </li>
       ))}

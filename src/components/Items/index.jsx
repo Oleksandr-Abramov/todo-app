@@ -45,19 +45,20 @@ const Items = () => {
 
   return (
     <div className={s.container}>
-      <form onSubmit={(e) => handlerAddItem(e)}>
-        <label>
-          <h2>Items</h2>
-          <input
-            type="text"
-            name="itemName"
-            placeholder="Type name here..."
-            value={itemName}
-            onChange={handleChangeForm}
-            required
-          />
-        </label>
-        <button type="submit">Add New</button>
+      <h2>Items</h2>
+      <form className={s.form} onSubmit={(e) => handlerAddItem(e)}>
+        <input
+          type="text"
+          name="itemName"
+          placeholder="Type name here..."
+          value={itemName}
+          onChange={handleChangeForm}
+          required
+        />
+
+        <button className={s.btn} type="submit">
+          Add New
+        </button>
       </form>
       <Item
         items={items}

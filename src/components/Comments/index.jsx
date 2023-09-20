@@ -32,10 +32,10 @@ const Comments = () => {
 
   return (
     <div className={s.container}>
-      <h2>Comments#{activeItem?.id}</h2>
+      <h2>Comments #{activeItem?.id}</h2>
       <CommentsList comments={activeItem?.comments} />
       <div className={s.formWrapper}>
-        <form onSubmit={(e) => handlerAddComment(e)}>
+        <form className={s.form} onSubmit={(e) => handlerAddComment(e)}>
           <input
             type="color"
             value={color}
@@ -49,7 +49,9 @@ const Comments = () => {
             onChange={handleChangeForm}
             required
           />
-          <button type="submit">Add New</button>
+          <button className={s.btn} type="submit">
+            Add New
+          </button>
         </form>
       </div>
     </div>
