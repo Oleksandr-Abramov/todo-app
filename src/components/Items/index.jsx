@@ -1,44 +1,70 @@
 import Item from "components/ItemsList";
 import s from "./items.module.css";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addTodo } from "store/todos/todosSlice";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, removeItem, setActiveItem } from "store/todos/todosSlice";
+import getId from "helpers/getId";
+import { getActiveItem, getItems } from "store/todos/todosSelectors";
 
 const Items = () => {
   const [itemName, setItemName] = useState("");
+  const items = useSelector(getItems);
+  const activeItem = useSelector(getActiveItem);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!items.map(({ id }) => id).includes(activeItem?.id)) {
+      dispatch(setActiveItem(items[items.length - 1]?.id));
+    }
+  }, [items]);
 
   const handleChangeForm = (e) => {
     setItemName(e.target.value);
   };
 
-  const handlerAddTodo = (e) => {
+  const handlerAddItem = (e) => {
     e.preventDefault();
     const item = {
-      id: "123123",
+      id: getId(items),
       name: itemName,
       comments: [],
     };
-    dispatch(addTodo({ item }));
+    dispatch(addItem(item));
+    setItemName("");
+  };
+
+  const handleSetActiveItem = (id) => {
+    dispatch(setActiveItem(id));
+  };
+
+  const handleRemoveItem = (e, id) => {
+    e.stopPropagation();
+    dispatch(removeItem(id));
   };
 
   return (
     <div className={s.container}>
-      <form onSubmit={(e) => handlerAddTodo(e)}>
+      <form onSubmit={(e) => handlerAddItem(e)}>
         <label>
-          <p>Items</p>
+          <h2>Items</h2>
           <input
             type="text"
             name="itemName"
             placeholder="Type name here..."
             value={itemName}
             onChange={handleChangeForm}
+            required
           />
         </label>
         <button type="submit">Add New</button>
       </form>
-      <Item item="item" coments="0" id="1233" />
+      <Item
+        items={items}
+        activeItem={activeItem?.id}
+        setActiveItem={handleSetActiveItem}
+        removeItem={handleRemoveItem}
+      />
     </div>
   );
 };

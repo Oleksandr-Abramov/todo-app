@@ -9,17 +9,17 @@ export const todosSlice = createSlice({
   name: "todos",
   initialState: state,
   reducers: {
-    addTodo(state, { payload }) {
+    addItem(state, { payload }) {
       state.items.push(payload);
     },
-    setCurrentTodo(state, { payload }) {
-      state.activeItem = state.items.filter(({ id }) => id === payload);
+    setActiveItem(state, { payload }) {
+      state.activeItem = state.items.find(({ id }) => id === payload);
     },
-    removeTodo(state, { payload }) {
+    removeItem(state, { payload }) {
       state.items = state.items.filter(({ id }) => id !== payload);
     },
   },
 });
 
-export const { addTodo, setCurrentTodo, removeTodo } = todosSlice.actions;
+export const { addItem, setActiveItem, removeItem } = todosSlice.actions;
 export const todosReduser = todosSlice.reducer;
