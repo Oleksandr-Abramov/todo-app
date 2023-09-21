@@ -17,7 +17,7 @@ const Items = () => {
     if (!items.map(({ id }) => id).includes(activeItem?.id)) {
       dispatch(setActiveItem(items[items.length - 1]?.id));
     }
-  }, [items]);
+  }, [items, activeItem, dispatch]);
 
   const handleChangeForm = (e) => {
     setItemName(e.target.value);

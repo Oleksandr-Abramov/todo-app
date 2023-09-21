@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import s from "./comments.module.css";
+import s from "./Comments.module.css";
 import { getActiveItem } from "store/todos/todosSelectors";
 import CommentsList from "components/CommentsList";
 import { useState } from "react";
