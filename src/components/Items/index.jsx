@@ -1,5 +1,5 @@
 import Item from "components/ItemsList";
-import s from "./items.module.css";
+import s from "./Items.module.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem, setActiveItem } from "store/todos/todosSlice";

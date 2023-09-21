@@ -1,4 +1,4 @@
-import s from "./commentsList.module.css";
+import s from "./CommentsList.module.css";
 
 const CommentsList = ({ comments }) => {
   return (

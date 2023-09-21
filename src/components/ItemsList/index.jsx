@@ -1,4 +1,4 @@
-import s from "./itemsList.module.css";
+import s from "./ItemsList.module.css";
 const Item = ({ items, activeItem, setActiveItem, removeItem }) => {
   return (
     <ul className={s.container}>

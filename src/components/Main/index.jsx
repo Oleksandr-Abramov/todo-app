@@ -1,5 +1,5 @@
 import Items from "components/Items";
-import s from "./main.module.css";
+import s from "./Main.module.css";
 import Comments from "components/Comments";
 
 const Main = () => {
